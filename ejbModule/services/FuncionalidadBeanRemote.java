@@ -6,17 +6,20 @@ import javax.ejb.Remote;
 
 import models.Funcionalidad;
 
-@Remote
+
+@Remote(FuncionalidadBeanRemote.class)
 public interface FuncionalidadBeanRemote {
 
-	void crear(Funcionalidad funcionalidad) throws Exception;
-
-	void actualizar(Funcionalidad funcionalidad) throws Exception;
-
-	void borrar(Long id) throws Exception;
-
+	
+	void crear (Funcionalidad funcionalidad) throws Exception ;
+	
+	void modificar (Funcionalidad funcionalidad) throws Exception;	
+	
+	void eliminar (Long id) throws Exception;
+	
 	List<Funcionalidad> obtenerTodos();
 
 	List<Funcionalidad> obtenerTodos(String filtro);
-
+	
+	
 }

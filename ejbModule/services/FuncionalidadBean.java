@@ -1,13 +1,17 @@
 package services;
 
 import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+
 import models.Funcionalidad;
 
+/**
+ * Session Bean implementation class FuncionalidadBean
+ */
 @Stateless
 @LocalBean
 public class FuncionalidadBean implements FuncionalidadBeanRemote {
@@ -15,6 +19,7 @@ public class FuncionalidadBean implements FuncionalidadBeanRemote {
 	EntityManager em;
 
 	public FuncionalidadBean() {
+
 	}
 
 	@Override
@@ -22,38 +27,49 @@ public class FuncionalidadBean implements FuncionalidadBeanRemote {
 
 		try {
 
-			em.persist(funcionalidad);
+			Funcionalidad f = new Funcionalidad();
+
+			em.persist(f);
+
 			em.flush();
 
-		} catch (PersistenceException e) {
-			throw new Exception("No se pudo crear la funcionalidad");
+		} catch (Exception e) {
+
+			System.out.println("No se pudo crear la funcionalidad ");
 		}
+
 	}
 
 	@Override
-	public void actualizar(Funcionalidad funcionalidad) throws Exception {
+	public void modificar(Funcionalidad funcionalidad) throws Exception {
+
 		try {
 
 			em.merge(funcionalidad);
+
 			em.flush();
 
-		} catch (PersistenceException e) {
-			throw new Exception("No se pudo actualizar la Funcionalidad");
+		} catch (Exception e) {
+
+			System.out.println("No se pudo actualizar la funcionalidad");
 		}
 
 	}
 
 	@Override
-	public void borrar(Long id) throws Exception {
+	public void eliminar(Long id) throws Exception {
 
 		try {
 
-			Funcionalidad funcionalidad = em.find(Funcionalidad.class, id);
-			em.remove(funcionalidad);
+			Funcionalidad f = em.find(Funcionalidad.class, id);
+
+			em.remove(f);
+
 			em.flush();
 
-		} catch (PersistenceException e) {
-			throw new Exception("No se pudo borrar la funcionalidad");
+		} catch (Exception e) {
+
+			System.out.println("No se pudo eliminar la funcionalidad");
 		}
 
 	}
@@ -61,7 +77,7 @@ public class FuncionalidadBean implements FuncionalidadBeanRemote {
 	@Override
 	public List<Funcionalidad> obtenerTodos() {
 
-		TypedQuery<Funcionalidad> query = em.createQuery("SELECT f FROM Funcionalidad f", Funcionalidad.class);
+		TypedQuery<Funcionalidad> query = em.createQuery("SELECT f FROM FUNCIONALIDAD f", Funcionalidad.class);
 
 		return query.getResultList();
 	}
@@ -69,9 +85,8 @@ public class FuncionalidadBean implements FuncionalidadBeanRemote {
 	@Override
 	public List<Funcionalidad> obtenerTodos(String filtro) {
 
-		TypedQuery<Funcionalidad> query = em
-				.createQuery("SELECT u FROM Funcionalidad u WHERE u.nombre LIKE :nombre ", Funcionalidad.class)
-				.setParameter("nombre", filtro);
+		TypedQuery<Funcionalidad> query = em.createQuery("SELECT f FROM FUNCIONALIDAD f WHERE f.nombre LIKE : nombre",
+				Funcionalidad.class);
 
 		return query.getResultList();
 
