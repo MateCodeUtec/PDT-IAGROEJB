@@ -11,14 +11,19 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	@Column(length = 50)
 	private String nombre;
+	
 	@Column(length = 50)
 	private String apellido;
+	
 	@Column(length = 50)
 	private String usuario;
+	
 	@Column(length = 50)
 	private String contrasenia;
+	
 	@ManyToOne(optional = false)
 	private Rol rol;
 	
@@ -71,7 +76,5 @@ public class Usuario implements Serializable{
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
 }
