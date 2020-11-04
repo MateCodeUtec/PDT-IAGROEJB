@@ -1,8 +1,10 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-public class Parametro {
+public class Parametro implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 

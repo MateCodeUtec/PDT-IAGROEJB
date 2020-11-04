@@ -1,11 +1,12 @@
 package models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Reporte {
+public class Reporte implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id

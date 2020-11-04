@@ -10,7 +10,6 @@ import enums.Visibilidad;
  *
  */
 @Entity
-
 public class Formulario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +17,7 @@ public class Formulario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) // Es para generar un ID autogenerado
 	private Long Id;
-
+	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 
@@ -30,8 +29,9 @@ public class Formulario implements Serializable {
 
 	@ManyToOne(optional = false)
 	private Equipamiento equipamiento;
-
-	private char visibilidad;
+	
+	@Enumerated
+	private Visibilidad visibilidad;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
@@ -45,17 +45,14 @@ public class Formulario implements Serializable {
 	@Column(length = 250)
 	private String comentario;
 
-	@Column(length = 50)
-	private String region;
 	
-	/*
 	@ManyToOne
 	private Region region;
 	
 	@ManyToOne
 	private Departamento departamento;
 	
-	*/
+	
 	
 	public Formulario() {
 	}
@@ -100,11 +97,11 @@ public class Formulario implements Serializable {
 		this.equipamiento = equipamiento;
 	}
 
-	public char getVisibilidad() {
+	public Visibilidad getVisibilidad() {
 		return visibilidad;
 	}
 
-	public void setVisibilidad(char visibilidad) {
+	public void setVisibilidad(Visibilidad visibilidad) {
 		this.visibilidad = visibilidad;
 	}
 
@@ -139,16 +136,7 @@ public class Formulario implements Serializable {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
 	
-	/*
 	public Region getRegion() {
 		return region;
 	}
@@ -158,11 +146,11 @@ public class Formulario implements Serializable {
 	}
 	
 	public Departamento getDepartamento() {
-		return region;
+		return departamento;
 	}
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
-	*/
+	
 }

@@ -1,12 +1,13 @@
 package models;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Metodo {
+public class Metodo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 

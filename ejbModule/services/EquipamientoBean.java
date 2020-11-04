@@ -12,68 +12,69 @@ import models.Equipamiento;
 @LocalBean
 public class EquipamientoBean implements EquipamientoBeanRemote {
 
-	
 	EntityManager em;
-    public EquipamientoBean() {}
- 
-    	@Override
-    	public void crear(Equipamiento equipamiento) throws Exception {
 
-    		try {
+	public EquipamientoBean() {
+	}
 
-    			em.persist(equipamiento);
-    			em.flush();
+	@Override
+	public void crear(Equipamiento equipamiento) throws Exception {
 
-    		} catch (PersistenceException e) {
-    			throw new Exception("No se pudo crear el equipamiento");
-    		}
-    	}
+		try {
 
-    	@Override
-    	public void actualizar(Equipamiento equipamiento) throws Exception {
-    		try {
+			em.persist(equipamiento);
+			em.flush();
 
-    			em.merge(equipamiento);
-    			em.flush();
+		} catch (PersistenceException e) {
+			throw new Exception("No se pudo crear el equipamiento");
+		}
+	}
 
-    		} catch (PersistenceException e) {
-    			throw new Exception("No se pudo actualizar el equipamiento");
-    		}
+	@Override
+	public void actualizar(Equipamiento equipamiento) throws Exception {
+		try {
 
-    	}
+			em.merge(equipamiento);
+			em.flush();
 
-    	@Override
-    	public void borrar(Long id) throws Exception {
+		} catch (PersistenceException e) {
+			throw new Exception("No se pudo actualizar el equipamiento");
+		}
 
-    		try {
+	}
 
-    			Equipamiento equipamiento = em.find(Equipamiento.class, id);
-    			em.remove(equipamiento);
-    			em.flush();
+	@Override
+	public void borrar(Long id) throws Exception {
 
-    		} catch (PersistenceException e) {
-    			throw new Exception("No se pudo borrar el equipamiento");
-    		}
+		try {
 
-    	}
+			Equipamiento equipamiento = em.find(Equipamiento.class, id);
+			em.remove(equipamiento);
+			em.flush();
 
-    	@Override
-    	public List<Equipamiento> obtenerTodos() {
+		} catch (PersistenceException e) {
+			throw new Exception("No se pudo borrar el equipamiento");
+		}
 
-    		TypedQuery<Equipamiento> query = em.createQuery("SELECT e FROM Equipamiento e", Equipamiento.class);
+	}
 
-    		return query.getResultList();
-    	}
+	@Override
+	public List<Equipamiento> obtenerTodos() {
 
-    	@Override
-    	public List<Equipamiento> obtenerTodos(String filtro) {
+		TypedQuery<Equipamiento> query = em.createQuery("SELECT e FROM Equipamiento e", Equipamiento.class);
 
-    		TypedQuery<Equipamiento> query = em.createQuery("SELECT e FROM Equipamiento e WHERE e.nombre LIKE :nombre ", Equipamiento.class)
-    				.setParameter("nombre", filtro);
+		return query.getResultList();
+	}
 
-    		return query.getResultList();
+	@Override
+	public List<Equipamiento> obtenerTodos(String filtro) {
 
-    	}
+		TypedQuery<Equipamiento> query = em
+				.createQuery("SELECT e FROM Equipamiento e WHERE e.nombre LIKE :nombre ", Equipamiento.class)
+				.setParameter("nombre", filtro);
+
+		return query.getResultList();
+
+	}
 
 }
-

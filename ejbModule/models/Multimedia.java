@@ -1,11 +1,13 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import enums.TipoMultimedia;
 
 @Entity
-public class Multimedia {
+public class Multimedia implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
