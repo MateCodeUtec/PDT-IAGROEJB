@@ -21,7 +21,7 @@ public class Multimedia implements Serializable {
 	@Enumerated
 	private TipoMultimedia tipo;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Reporte reporte;
 
 	public Long getId() {

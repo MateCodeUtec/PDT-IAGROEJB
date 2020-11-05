@@ -13,7 +13,7 @@ public class Reporte implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO) // Es para generar un ID autogenerado
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Usuario usuario;
 	
 	@Column(length = 45)

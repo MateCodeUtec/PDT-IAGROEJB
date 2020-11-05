@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import models.Formulario;
@@ -12,6 +13,7 @@ import models.Formulario;
 @LocalBean
 public class FormularioBean implements FormularioBeanRemote {
 
+	@PersistenceContext
 	EntityManager em;
 
 	public FormularioBean() {

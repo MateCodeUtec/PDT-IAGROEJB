@@ -21,13 +21,11 @@ public class Rol implements Serializable {
 	@OneToMany
 	private List<Usuario> usuarios;
 	
-	
 	public Rol() {
 		
 	}
 	
-	public Rol(Long id, String nombre) {
-		this.id = id;
+	public Rol(String nombre) {
 		this.nombre = nombre;
 	}
 

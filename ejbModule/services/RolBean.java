@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import models.Rol;
@@ -12,6 +13,8 @@ import models.Rol;
 @LocalBean
 public class RolBean implements RolBeanRemote {
 
+		
+	@PersistenceContext
 	EntityManager em;
 
 	public RolBean() {

@@ -18,16 +18,16 @@ public class Formulario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO) // Es para generar un ID autogenerado
 	private Long Id;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	private Usuario usuario;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	private Metodo metodo;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	private Estacion estacion;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	private Equipamiento equipamiento;
 	
 	@Enumerated
@@ -44,14 +44,12 @@ public class Formulario implements Serializable {
 
 	@Column(length = 250)
 	private String comentario;
-
 	
-	@ManyToOne
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	private Region region;
 	
-	@ManyToOne
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	private Departamento departamento;
-	
 	
 	
 	public Formulario() {

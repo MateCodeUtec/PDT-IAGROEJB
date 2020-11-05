@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import models.Formulario;
@@ -17,6 +18,7 @@ import models.Parametro;
 @LocalBean
 public class ParametroBean implements ParametroBeanRemote {
 
+	@PersistenceContext
 	EntityManager em;
 
 	public ParametroBean() {

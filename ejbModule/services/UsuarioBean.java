@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import models.Usuario;
@@ -11,7 +12,8 @@ import models.Usuario;
 @Stateless
 @LocalBean
 public class UsuarioBean implements UsuarioBeanRemote {
-
+	
+	@PersistenceContext
 	EntityManager em;
 
 	public UsuarioBean() {}
@@ -20,7 +22,6 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	public void crear(Usuario usuario) throws Exception {
 
 		try {
-
 			em.persist(usuario);
 			em.flush();
 

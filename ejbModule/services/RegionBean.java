@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
@@ -20,7 +21,8 @@ public class RegionBean implements RegionBeanRemote {
 
     public RegionBean() {}
     
-    EntityManager em;
+    @PersistenceContext
+	EntityManager em;
 
    	@Override
    	public void crear(Region region) throws Exception {

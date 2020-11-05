@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
@@ -24,7 +25,8 @@ public class DepartamentoBean implements DepartamentoBeanRemote {
         // TODO Auto-generated constructor stub
     }
 
-    EntityManager em;
+    @PersistenceContext
+	EntityManager em;
 
 	@Override
 	public void crear(Departamento departamento) throws Exception {
