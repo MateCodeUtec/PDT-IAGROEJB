@@ -24,7 +24,7 @@ public class Usuario implements Serializable{
 	@Column(length = 50)
 	private String contrasenia;
 	
-	@ManyToOne(optional = false, cascade=CascadeType.ALL)
+	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
 	private Rol rol;
 	
 	public Usuario() {

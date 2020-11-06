@@ -16,4 +16,10 @@ public class TipoParametro {
 	
 	@Enumerated(value = EnumType.STRING)
 	private TipoDato tipo;
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
 }	

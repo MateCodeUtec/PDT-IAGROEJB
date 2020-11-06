@@ -26,7 +26,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo crear el usuario");
+			throw new Exception(e.getMessage());
 		}
 	}
 
@@ -38,7 +38,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo actualizar el usuario");
+			throw new Exception("No se pudo actualizar el usuario-->"+e.getMessage());
 		}
 
 	}
@@ -53,7 +53,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo borrar el usuario");
+			throw new Exception("No se pudo borrar el usuario-->"+e.getMessage());
 		}
 
 	}
@@ -81,7 +81,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 		
 		TypedQuery<Usuario> query = em.createQuery("SELECT u from Usuario u WHERE u.usuario = :usuario ", Usuario.class)
 				.setParameter("usuario", usuario);
-		return query.getResultList().get(0);
+		return query.getSingleResult();
 	}
 
 	@Override

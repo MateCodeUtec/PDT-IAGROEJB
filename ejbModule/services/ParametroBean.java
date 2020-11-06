@@ -83,7 +83,7 @@ public class ParametroBean implements ParametroBeanRemote {
 
 			Parametro p = em.find(Parametro.class, idParametro);
 
-			p.setFormulario(em.find(Formulario.class, idFormulario));
+			p.addFormulario(em.find(Formulario.class, idFormulario));
 
 			em.flush();
 

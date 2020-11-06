@@ -13,7 +13,7 @@ public class Reporte implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO) // Es para generar un ID autogenerado
 	private Long id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne//(cascade=CascadeType.ALL)
 	private Usuario usuario;
 	
 	@Column(length = 45)
@@ -63,6 +63,11 @@ public class Reporte implements Serializable {
 
 	public void setMultimedias(List<Multimedia> multimedias) {
 		this.multimedias = multimedias;
+	}
+	
+	@Override
+	public String toString() {
+		return nombre;
 	}
 	
 	

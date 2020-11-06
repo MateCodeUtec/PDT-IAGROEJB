@@ -52,5 +52,11 @@ public class Estacion implements Serializable {
 		formularios.add(formulario);
 	}
 
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
 
 }

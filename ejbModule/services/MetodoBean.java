@@ -28,7 +28,7 @@ public class MetodoBean implements MetodoBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo crear el metodo");
+			throw new Exception("No se pudo crear el metodo-->"+e.getMessage());
 		}
 	}
 
@@ -40,7 +40,7 @@ public class MetodoBean implements MetodoBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo actualizar el metodo");
+			throw new Exception("No se pudo actualizar el metodo-->"+e.getMessage());
 		}
 
 	}
@@ -55,7 +55,7 @@ public class MetodoBean implements MetodoBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo borrar el metodo");
+			throw new Exception("No se pudo borrar el metodo-->"+e.getMessage());
 		}
 
 	}

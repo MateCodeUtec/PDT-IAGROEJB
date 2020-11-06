@@ -51,7 +51,12 @@ public class Equipamiento implements Serializable {
 	public void addFormulario(Formulario formulario) {
 		formularios.add(formulario);
 	}
-
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
 
 }
 

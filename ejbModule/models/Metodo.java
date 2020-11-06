@@ -49,4 +49,10 @@ public class Metodo implements Serializable {
 		formularios.add(formulario);
 	}
 	
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
 }

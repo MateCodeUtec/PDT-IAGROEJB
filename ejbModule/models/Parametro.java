@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -18,7 +19,7 @@ public class Parametro implements Serializable {
 	private TipoParametro tipo;
 	
 	@OneToMany
-	private Formulario formulario;
+	private List<Formulario> formularios;
 
 	public Long getId() {
 		return id;
@@ -44,12 +45,16 @@ public class Parametro implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Formulario getFormulario() {
-		return formulario;
+	public List<Formulario> getFormularios() {
+		return formularios;
 	}
 
-	public void setFormulario(Formulario formulario) {
-		this.formulario = formulario;
+	public void setFormularios(List<Formulario> formularios) {
+		this.formularios = formularios;
+	}
+	 
+	public void addFormulario(Formulario formulario) {
+		formularios.add(formulario);
 	}
 	
 	
