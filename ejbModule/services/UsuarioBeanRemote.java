@@ -18,5 +18,9 @@ public interface UsuarioBeanRemote {
 	List<Usuario> obtenerTodos();
 
 	List<Usuario> obtenerTodos(String filtro);
+	
+	Usuario getUsuario(String usuario) throws Exception;
+	
+	boolean validarLogin(Usuario objUsuario, String usuario, String pass);
 
 }

@@ -76,4 +76,24 @@ public class UsuarioBean implements UsuarioBeanRemote {
 
 	}
 
+	@Override
+	public Usuario getUsuario(String usuario) throws Exception {
+		
+		TypedQuery<Usuario> query = em.createQuery("SELECT u from Usuario u WHERE u.usuario = :usuario ", Usuario.class)
+				.setParameter("usuario", usuario);
+		return query.getResultList().get(0);
+	}
+
+	@Override
+	public boolean validarLogin(Usuario objUsuario, String usuario, String pass) {
+		
+		if (objUsuario.getUsuario().equals(usuario)) {
+			
+			return objUsuario.getContrasenia().equals(pass);
+			
+		}
+
+		return false;
+	}
+
 }
