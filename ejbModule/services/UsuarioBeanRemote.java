@@ -21,6 +21,8 @@ public interface UsuarioBeanRemote {
 	
 	Usuario getUsuario(String usuario) throws Exception;
 	
+	Usuario getUsuarioPorId(Long id) throws Exception;
+	
 	boolean validarLogin(Usuario objUsuario, String usuario, String pass);
 
 }

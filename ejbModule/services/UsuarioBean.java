@@ -33,7 +33,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	@Override
 	public void actualizar(Usuario usuario) throws Exception {
 		try {
-
+			
 			em.merge(usuario);
 			em.flush();
 
@@ -49,6 +49,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 		try {
 
 			Usuario usuario = em.find(Usuario.class, id);
+			System.out.println("encontre usuario-->"+usuario.getNombre());
 			em.remove(usuario);
 			em.flush();
 
@@ -82,6 +83,13 @@ public class UsuarioBean implements UsuarioBeanRemote {
 		TypedQuery<Usuario> query = em.createQuery("SELECT u from Usuario u WHERE u.usuario = :usuario ", Usuario.class)
 				.setParameter("usuario", usuario);
 		return query.getSingleResult();
+	}
+	
+	@Override
+	public Usuario getUsuarioPorId(Long id) throws Exception {
+		
+		Usuario usuario = em.find(Usuario.class, id);
+		return usuario;
 	}
 
 	@Override

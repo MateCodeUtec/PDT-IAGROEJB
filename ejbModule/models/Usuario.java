@@ -18,7 +18,7 @@ public class Usuario implements Serializable{
 	@Column(length = 50)
 	private String apellido;
 	
-	@Column(length = 50)
+	@Column(length = 50, unique = true)
 	private String usuario;
 	
 	@Column(length = 50)
