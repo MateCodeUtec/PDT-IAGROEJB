@@ -3,6 +3,8 @@ package models;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 import enums.Visibilidad;
 
 /**
@@ -15,55 +17,34 @@ public class Formulario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) // Es para generar un ID autogenerado
-	private Long Id;
+	@GeneratedValue(strategy = GenerationType.AUTO) 
+	private Long id;
 	
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
+	@ManyToOne(optional = false)
 	private Usuario usuario;
-
-	// N a N ???
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
-	private Metodo metodo;
-
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
-	private Estacion estacion;
 	
-	// N a N ???
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
-	private Equipamiento equipamiento;
+	@Column(length = 100)
+	private String titulo;
+	
+	@Column(length = 250)
+	private String descripcion;
 	
 	@Enumerated
 	private Visibilidad visibilidad;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fecha;
-
-	@Column(length = 50)
-	private String longitud;
-
-	@Column(length = 50)
-	private String latitud;
-
-	@Column(length = 250)
-	private String comentario;
-	
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
-	private Region region;
-	
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
-	private Departamento departamento;
-	
 	
 	public Formulario() {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
+	
+	
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -71,30 +52,6 @@ public class Formulario implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Metodo getMetodo() {
-		return metodo;
-	}
-
-	public void setMetodo(Metodo metodo) {
-		this.metodo = metodo;
-	}
-
-	public Estacion getEstacion() {
-		return estacion;
-	}
-
-	public void setEstacion(Estacion estacion) {
-		this.estacion = estacion;
-	}
-
-	public Equipamiento getEquipamiento() {
-		return equipamiento;
-	}
-
-	public void setEquipamiento(Equipamiento equipamiento) {
-		this.equipamiento = equipamiento;
 	}
 
 	public Visibilidad getVisibilidad() {
@@ -105,52 +62,68 @@ public class Formulario implements Serializable {
 		this.visibilidad = visibilidad;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
-	public String getLongitud() {
-		return longitud;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setLongitud(String longitud) {
-		this.longitud = longitud;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getLatitud() {
-		return latitud;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		result = prime * result + ((visibilidad == null) ? 0 : visibilidad.hashCode());
+		return result;
 	}
 
-	public void setLatitud(String latitud) {
-		this.latitud = latitud;
-	}
-
-	public String getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Formulario other = (Formulario) obj;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
+			return false;
+		if (visibilidad != other.visibilidad)
+			return false;
+		return true;
 	}
 	
-	public Region getRegion() {
-		return region;
-	}
-
-	public void setRegion(Region region) {
-		this.region = region;
-	}
 	
-	public Departamento getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
-	}
 	
 }

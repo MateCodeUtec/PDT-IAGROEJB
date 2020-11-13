@@ -7,5 +7,6 @@ public enum TipoDato {
 	FLOAT,
 	DOUBLE,
 	DATE,
-	DATETIME
+	DATETIME,
+	BLOB
 }

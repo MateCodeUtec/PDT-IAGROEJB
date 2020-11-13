@@ -24,15 +24,14 @@ public class Usuario implements Serializable{
 	@Column(length = 50)
 	private String contrasenia;
 	
-	@ManyToOne(optional = false)//, cascade=CascadeType.ALL)
+	@ManyToOne(optional = false)
 	private Rol rol;
 	
 	public Usuario() {
 		
 	}
 	
-	public Usuario(Long id, String nombre, String apellido, String usuario, String contrasenia, Rol rol) {
-		this.id = id;
+	public Usuario(String nombre, String apellido, String usuario, String contrasenia, Rol rol) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.usuario = usuario;
@@ -77,4 +76,59 @@ public class Usuario implements Serializable{
 		this.rol = rol;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
+		result = prime * result + ((contrasenia == null) ? 0 : contrasenia.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (apellido == null) {
+			if (other.apellido != null)
+				return false;
+		} else if (!apellido.equals(other.apellido))
+			return false;
+		if (contrasenia == null) {
+			if (other.contrasenia != null)
+				return false;
+		} else if (!contrasenia.equals(other.contrasenia))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (rol == null) {
+			if (other.rol != null)
+				return false;
+		} else if (!rol.equals(other.rol))
+			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
+			return false;
+		return true;
+	}
+	
 }

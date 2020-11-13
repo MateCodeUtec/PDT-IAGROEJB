@@ -21,7 +21,7 @@ public class Multimedia implements Serializable {
 	@Enumerated
 	private TipoMultimedia tipo;
 	
-	@ManyToOne//(cascade=CascadeType.ALL)
+	@ManyToOne
 	private Reporte reporte;
 
 	public Long getId() {
@@ -54,6 +54,46 @@ public class Multimedia implements Serializable {
 
 	public void setReporte(Reporte reporte) {
 		this.reporte = reporte;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((reporte == null) ? 0 : reporte.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Multimedia other = (Multimedia) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (reporte == null) {
+			if (other.reporte != null)
+				return false;
+		} else if (!reporte.equals(other.reporte))
+			return false;
+		if (tipo != other.tipo)
+			return false;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
+		return true;
 	}
 	
 	
