@@ -16,10 +16,9 @@ public class Parametro implements Serializable {
 	
 	private boolean obligatorio;
 	
-	@OneToOne//(cascade = CascadeType.ALL)
+	@OneToOne
 	private TipoParametro tipo;
 		
-
 	public Parametro() {
 		super();
 	}

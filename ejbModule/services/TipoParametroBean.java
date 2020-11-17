@@ -29,6 +29,7 @@ public class TipoParametroBean implements TipoParametroBeanRemote {
 			return tipoParametro;
 
 		} catch (PersistenceException e) {
+			e.printStackTrace();
 			throw new Exception("No se pudo crear el tipo de parametro");
 		}
 	}
