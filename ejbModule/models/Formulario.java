@@ -29,11 +29,33 @@ public class Formulario implements Serializable {
 	@Column(length = 250)
 	private String descripcion;
 	
-	@Enumerated
+	@Enumerated(value = EnumType.STRING)
 	private Visibilidad visibilidad;
+	
+	@OneToMany//(cascade = CascadeType.ALL)
+	private List<Parametro> parametros;
 
 	
 	public Formulario() {
+	}
+
+	public Formulario(Usuario usuario, String titulo, String descripcion, Visibilidad visibilidad,
+			List<Parametro> parametros) {
+		super();
+		this.usuario = usuario;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.visibilidad = visibilidad;
+		this.parametros = parametros;
+	}
+
+
+	public Formulario(Usuario usuario, String titulo, String descripcion, Visibilidad visibilidad) {
+		super();
+		this.usuario = usuario;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.visibilidad = visibilidad;
 	}
 
 	public Long getId() {
@@ -76,6 +98,26 @@ public class Formulario implements Serializable {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	
+	public List<Parametro> getParametros() {
+		return parametros;
+	}
+
+	public void setParametros(List<Parametro> parametros) {
+		this.parametros = parametros;
+	}
+	
+	public void addParametro (Parametro parametro) {
+		parametros.add(parametro);
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Formulario [id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", descripcion=" + descripcion
+				+ ", visibilidad=" + visibilidad + ", parametros=" + parametros + "]";
 	}
 
 	@Override

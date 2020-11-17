@@ -14,6 +14,8 @@ public interface FormularioBeanRemote {
 	void actualizar(Formulario usuario) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Formulario getFormulario(String nombre);
 
 	List<Formulario> obtenerTodos();
 

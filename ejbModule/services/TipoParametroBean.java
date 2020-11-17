@@ -20,12 +20,13 @@ public class TipoParametroBean implements TipoParametroBeanRemote {
 	}
 
 	@Override
-	public void crear(TipoParametro tipoParametro) throws Exception {
+	public TipoParametro crear(TipoParametro tipoParametro) throws Exception {
 
 		try {
 
 			em.persist(tipoParametro);
 			em.flush();
+			return tipoParametro;
 
 		} catch (PersistenceException e) {
 			throw new Exception("No se pudo crear el tipo de parametro");
@@ -78,5 +79,6 @@ public class TipoParametroBean implements TipoParametroBeanRemote {
 		return query.getResultList();
 
 	}
+
 
 }

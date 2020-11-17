@@ -9,7 +9,7 @@ import models.TipoParametro;
 @Remote
 public interface TipoParametroBeanRemote {
 
-	void crear(TipoParametro tipoParametro) throws Exception;
+	TipoParametro crear(TipoParametro tipoParametro) throws Exception;
 
 	void actualizar(TipoParametro tipoParametro) throws Exception;
 

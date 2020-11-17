@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import models.Formulario;
 import models.Parametro;
 
 /**
@@ -26,18 +25,17 @@ public class ParametroBean implements ParametroBeanRemote {
 	}
 
 	@Override
-	public void crear(Parametro parametro) throws Exception {
+	public Parametro crear(Parametro parametro) throws Exception {
 
 		try {
-			Parametro p = new Parametro();
-
-			em.persist(p);
-
+			
+			em.persist(parametro);
 			em.flush();
+			return parametro;
 
 		} catch (Exception e) {
-
-			System.out.println("No se pudo crear el parametro");
+			e.printStackTrace();
+			throw new Exception("No se pudo crear el parametro");
 		}
 
 	}
@@ -77,24 +75,6 @@ public class ParametroBean implements ParametroBeanRemote {
 	}
 
 	@Override
-	public void asignarFormulario(Long idParametro, Long idFormulario) {
-
-		try {
-
-			Parametro p = em.find(Parametro.class, idParametro);
-
-			p.addFormulario(em.find(Formulario.class, idFormulario));
-
-			em.flush();
-
-		} catch (Exception e) {
-
-			System.out.println("No se pudo asignar el formulario al parametro");
-		}
-
-	}
-
-	@Override
 	public List<Parametro> obtenerTodos() {
 
 		TypedQuery<Parametro> query = em.createQuery("SELECT p FROM PARAMETRO p", Parametro.class);
@@ -104,8 +84,9 @@ public class ParametroBean implements ParametroBeanRemote {
 	@Override
 	public List<Parametro> obtenerTodos(String filtro) {
 
-		TypedQuery<Parametro> query = em.createQuery("SELECT p FROM PARAMETRO p WHERE p.TipoParametro = TipoParametro",
-				Parametro.class);
+		TypedQuery<Parametro> query = em
+				.createQuery("SELECT p FROM PARAMETRO p WHERE p.nombre = :nombre", Parametro.class)
+				.setParameter(1, filtro);
 		return query.getResultList();
 	}
 

@@ -1,26 +1,67 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import enums.TipoDato;
 
 @Entity
-public class TipoParametro {
+public class TipoParametro implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(length = 50, unique = true)
+	@Column(length = 50)
 	private String nombre;
 	
 	@Enumerated(value = EnumType.STRING)
 	private TipoDato tipo;
+
+	public TipoParametro() {
+		super();
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public TipoDato getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoDato tipo) {
+		this.tipo = tipo;
+	}
+
+	public TipoParametro(String nombre, TipoDato tipo) {
+		super();
+		this.nombre = nombre;
+		this.tipo = tipo;
+	}
+	
+
 	
 	@Override
 	public String toString() {
-		return nombre;
+		return "TipoParametro [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + "]";
 	}
+
 
 	@Override
 	public int hashCode() {

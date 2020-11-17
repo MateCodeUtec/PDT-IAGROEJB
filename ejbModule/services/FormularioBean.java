@@ -7,7 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
 import models.Formulario;
+import models.Usuario;
 
 @Stateless
 @LocalBean
@@ -16,18 +19,16 @@ public class FormularioBean implements FormularioBeanRemote {
 	@PersistenceContext
 	EntityManager em;
 
-	public FormularioBean() {
-	}
-
 	@Override
 	public void crear(Formulario formulario) throws Exception {
 
 		try {
-
+			
 			em.persist(formulario);
 			em.flush();
-
+			
 		} catch (PersistenceException e) {
+			e.printStackTrace();
 			throw new Exception("No se pudo crear el formulario");
 		}
 	}
@@ -77,5 +78,12 @@ public class FormularioBean implements FormularioBeanRemote {
 
 		return query.getResultList();
 
+	}
+
+	@Override
+	public Formulario getFormulario(String titulo) {
+		TypedQuery<Formulario> query = em.createQuery("SELECT u from Formulario u WHERE u.titulo = :titulo ", Formulario.class)
+				.setParameter("titulo", titulo);
+		return query.getSingleResult();
 	}
 }
