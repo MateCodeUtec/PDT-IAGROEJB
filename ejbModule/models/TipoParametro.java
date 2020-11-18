@@ -59,7 +59,7 @@ public class TipoParametro implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "TipoParametro [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + "]";
+		return nombre;
 	}
 
 
