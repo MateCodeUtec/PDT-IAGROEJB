@@ -11,9 +11,11 @@ public interface FormularioBeanRemote {
 
 	void crear(Formulario formulario) throws Exception;
 
-	void actualizar(Formulario usuario) throws Exception;
+	void actualizar(Formulario formulario) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Formulario getFormularioById(Long id);
 	
 	Formulario getFormulario(String nombre);
 

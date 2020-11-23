@@ -20,13 +20,13 @@ public class EquipamientoBean implements EquipamientoBeanRemote {
 	}
 
 	@Override
-	public void crear(Equipamiento equipamiento) throws Exception {
+	public Equipamiento crear(Equipamiento equipamiento) throws Exception {
 
 		try {
 
 			em.persist(equipamiento);
 			em.flush();
-
+			return equipamiento;
 		} catch (PersistenceException e) {
 			throw new Exception("No se pudo crear el equipamiento");
 		}

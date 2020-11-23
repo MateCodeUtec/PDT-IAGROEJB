@@ -9,7 +9,7 @@ import models.Equipamiento;
 @Remote
 public interface EquipamientoBeanRemote {
 
-	void crear(Equipamiento equipamiento) throws Exception;
+	Equipamiento crear(Equipamiento equipamiento) throws Exception;
 
 	void actualizar(Equipamiento equipamiento) throws Exception;
 

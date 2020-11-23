@@ -10,3 +10,5 @@ public enum TipoDato {
 	DATETIME,
 	BLOB
 }
+
+

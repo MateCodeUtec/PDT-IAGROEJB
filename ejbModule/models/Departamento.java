@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +21,7 @@ public class Departamento implements Serializable {
 	
 	@Column(length = 45)
 	private String nombre;
+	
 
 	public Departamento() {
 		super();
@@ -40,10 +43,12 @@ public class Departamento implements Serializable {
 		this.nombre = nombre;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return nombre;
 	}
+	
 
 	@Override
 	public int hashCode() {

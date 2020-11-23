@@ -29,6 +29,7 @@ public class FormularioBean implements FormularioBeanRemote {
 			
 		} catch (PersistenceException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 			throw new Exception("No se pudo crear el formulario");
 		}
 	}
@@ -56,7 +57,7 @@ public class FormularioBean implements FormularioBeanRemote {
 			em.flush();
 
 		} catch (PersistenceException e) {
-			throw new Exception("No se pudo borrar el usuario");
+			throw new Exception("No se pudo borrar el Formulario");
 		}
 
 	}
@@ -64,7 +65,7 @@ public class FormularioBean implements FormularioBeanRemote {
 	@Override
 	public List<Formulario> obtenerTodos() {
 
-		TypedQuery<Formulario> query = em.createQuery("SELECT u FROM Usuario u", Formulario.class);
+		TypedQuery<Formulario> query = em.createQuery("SELECT u FROM Formulario u", Formulario.class);
 
 		return query.getResultList();
 	}
@@ -85,5 +86,13 @@ public class FormularioBean implements FormularioBeanRemote {
 		TypedQuery<Formulario> query = em.createQuery("SELECT u from Formulario u WHERE u.titulo = :titulo ", Formulario.class)
 				.setParameter("titulo", titulo);
 		return query.getSingleResult();
+	}
+
+	@Override
+	public Formulario getFormularioById(Long id) {
+		
+		Formulario formulario = em.find(Formulario.class, id);
+		
+		return formulario;
 	}
 }

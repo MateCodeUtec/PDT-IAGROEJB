@@ -20,13 +20,13 @@ public class MetodoBean implements MetodoBeanRemote {
 
 
 	@Override
-	public void crear(Metodo metodo) throws Exception {
+	public Metodo crear(Metodo metodo) throws Exception {
 
 		try {
 
 			em.persist(metodo);
 			em.flush();
-
+			return metodo;
 		} catch (PersistenceException e) {
 			throw new Exception("No se pudo crear el metodo-->"+e.getMessage());
 		}

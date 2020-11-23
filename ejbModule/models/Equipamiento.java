@@ -1,7 +1,6 @@
 package models;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -17,9 +16,6 @@ public class Equipamiento implements Serializable {
 	@Column(length = 50)
 	private String nombre;
 	
-	@OneToMany
-	private List<Formulario> formularios;
-
 	public Equipamiento() {
 
 	}
@@ -39,19 +35,7 @@ public class Equipamiento implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public List<Formulario> getFormularios() {
-		return formularios;
-	}
 
-	public void setFormularios(List<Formulario> formularios) {
-		this.formularios = formularios;
-	}
-	
-	public void addFormulario(Formulario formulario) {
-		formularios.add(formulario);
-	}
-	
 	@Override
 	public String toString() {
 		return nombre;
@@ -61,7 +45,6 @@ public class Equipamiento implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((formularios == null) ? 0 : formularios.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -76,11 +59,6 @@ public class Equipamiento implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Equipamiento other = (Equipamiento) obj;
-		if (formularios == null) {
-			if (other.formularios != null)
-				return false;
-		} else if (!formularios.equals(other.formularios))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -93,6 +71,8 @@ public class Equipamiento implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 

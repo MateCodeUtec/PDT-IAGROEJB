@@ -18,9 +18,6 @@ public class Metodo implements Serializable {
 	@Column(length = 55)
 	private String nombre;
 	
-	@OneToMany
-	private List<Formulario> formularios;
-
 	public long getId() {
 		return id;
 	}
@@ -36,18 +33,6 @@ public class Metodo implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public List<Formulario> getFormularios() {
-		return formularios;
-	}
-
-	public void setFormularios(List<Formulario> formularios) {
-		this.formularios = formularios;
-	}
-	
-	public void addFormulario(Formulario formulario) {
-		formularios.add(formulario);
-	}
 	
 	@Override
 	public String toString() {
@@ -58,7 +43,6 @@ public class Metodo implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((formularios == null) ? 0 : formularios.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -73,11 +57,6 @@ public class Metodo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Metodo other = (Metodo) obj;
-		if (formularios == null) {
-			if (other.formularios != null)
-				return false;
-		} else if (!formularios.equals(other.formularios))
-			return false;
 		if (id != other.id)
 			return false;
 		if (nombre == null) {
@@ -87,6 +66,7 @@ public class Metodo implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 }

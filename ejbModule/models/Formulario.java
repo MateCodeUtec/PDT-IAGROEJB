@@ -2,7 +2,6 @@ package models;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 import enums.Visibilidad;
@@ -23,6 +22,21 @@ public class Formulario implements Serializable {
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 	
+	@ManyToOne(optional = true)
+	private Departamento departamento;
+	
+	@ManyToOne(optional = true)
+	private Estacion estacion;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Metodo> metodos;
+	
+	@ManyToOne(optional = true)
+	private Region region;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Equipamiento> equipamientos;
+	
 	@Column(length = 100)
 	private String titulo;
 	
@@ -32,7 +46,7 @@ public class Formulario implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private Visibilidad visibilidad;
 	
-	@OneToMany//(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Parametro> parametros;
 
 	
@@ -56,6 +70,24 @@ public class Formulario implements Serializable {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.visibilidad = visibilidad;
+	}
+	
+	
+
+	public Formulario(Usuario usuario, Departamento departamento, Estacion estacion, List<Metodo> metodos, Region region,
+			List<Equipamiento> equipamientos, String titulo, String descripcion, Visibilidad visibilidad,
+			List<Parametro> parametros) {
+		super();
+		this.usuario = usuario;
+		this.departamento = departamento;
+		this.estacion = estacion;
+		this.metodos = metodos;
+		this.region = region;
+		this.equipamientos = equipamientos;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.visibilidad = visibilidad;
+		this.parametros = parametros;
 	}
 
 	public Long getId() {
@@ -111,21 +143,59 @@ public class Formulario implements Serializable {
 	public void addParametro (Parametro parametro) {
 		parametros.add(parametro);
 	}
-	
-	
 
-	@Override
-	public String toString() {
-		return "Formulario [id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", descripcion=" + descripcion
-				+ ", visibilidad=" + visibilidad + ", parametros=" + parametros + "]";
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public Estacion getEstacion() {
+		return estacion;
+	}
+
+	public void setEstacion(Estacion estacion) {
+		this.estacion = estacion;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+	
+	public List<Metodo> getMetodos() {
+		return metodos;
+	}
+
+	public void setMetodos(List<Metodo> metodos) {
+		this.metodos = metodos;
+	}
+
+	public List<Equipamiento> getEquipamientos() {
+		return equipamientos;
+	}
+
+	public void setEquipamientos(List<Equipamiento> equipamientos) {
+		this.equipamientos = equipamientos;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((departamento == null) ? 0 : departamento.hashCode());
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((equipamientos == null) ? 0 : equipamientos.hashCode());
+		result = prime * result + ((estacion == null) ? 0 : estacion.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((metodos == null) ? 0 : metodos.hashCode());
+		result = prime * result + ((parametros == null) ? 0 : parametros.hashCode());
+		result = prime * result + ((region == null) ? 0 : region.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		result = prime * result + ((visibilidad == null) ? 0 : visibilidad.hashCode());
@@ -141,15 +211,45 @@ public class Formulario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Formulario other = (Formulario) obj;
+		if (departamento == null) {
+			if (other.departamento != null)
+				return false;
+		} else if (!departamento.equals(other.departamento))
+			return false;
 		if (descripcion == null) {
 			if (other.descripcion != null)
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
+		if (equipamientos == null) {
+			if (other.equipamientos != null)
+				return false;
+		} else if (!equipamientos.equals(other.equipamientos))
+			return false;
+		if (estacion == null) {
+			if (other.estacion != null)
+				return false;
+		} else if (!estacion.equals(other.estacion))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (metodos == null) {
+			if (other.metodos != null)
+				return false;
+		} else if (!metodos.equals(other.metodos))
+			return false;
+		if (parametros == null) {
+			if (other.parametros != null)
+				return false;
+		} else if (!parametros.equals(other.parametros))
+			return false;
+		if (region == null) {
+			if (other.region != null)
+				return false;
+		} else if (!region.equals(other.region))
 			return false;
 		if (titulo == null) {
 			if (other.titulo != null)
@@ -165,7 +265,13 @@ public class Formulario implements Serializable {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return titulo;
+	}
+
+		
 	
 	
 }

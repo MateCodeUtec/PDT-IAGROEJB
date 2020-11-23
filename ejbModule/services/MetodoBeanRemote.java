@@ -9,7 +9,7 @@ import models.Metodo;
 @Remote
 public interface MetodoBeanRemote {
 
-	void crear(Metodo metodo) throws Exception;
+	Metodo crear(Metodo metodo) throws Exception;
 
 	void actualizar(Metodo metodo) throws Exception;
 

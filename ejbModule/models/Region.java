@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -40,6 +42,7 @@ public class Region implements Serializable {
 		this.nombre = nombre;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,5 +73,12 @@ public class Region implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
    
 }
