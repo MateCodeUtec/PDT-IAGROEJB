@@ -82,4 +82,10 @@ public class EstacionBean implements EstacionBeanRemote {
 
 	}
 
+	@Override
+	public Estacion getEstacionById(Long id) {
+		Estacion estacion = em.find(Estacion.class, id);
+		return estacion;
+	}
+
 }

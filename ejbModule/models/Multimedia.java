@@ -22,7 +22,7 @@ public class Multimedia implements Serializable {
 	private TipoMultimedia tipo;
 	
 	@ManyToOne
-	private Reporte reporte;
+	private ActividadCampo actividadCampo;
 
 	public Long getId() {
 		return id;
@@ -48,12 +48,12 @@ public class Multimedia implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Reporte getReporte() {
-		return reporte;
+	public ActividadCampo getReporte() {
+		return actividadCampo;
 	}
 
-	public void setReporte(Reporte reporte) {
-		this.reporte = reporte;
+	public void setReporte(ActividadCampo actividadCampo) {
+		this.actividadCampo = actividadCampo;
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class Multimedia implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((reporte == null) ? 0 : reporte.hashCode());
+		result = prime * result + ((actividadCampo == null) ? 0 : actividadCampo.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
@@ -81,10 +81,10 @@ public class Multimedia implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (reporte == null) {
-			if (other.reporte != null)
+		if (actividadCampo == null) {
+			if (other.actividadCampo != null)
 				return false;
-		} else if (!reporte.equals(other.reporte))
+		} else if (!actividadCampo.equals(other.actividadCampo))
 			return false;
 		if (tipo != other.tipo)
 			return false;

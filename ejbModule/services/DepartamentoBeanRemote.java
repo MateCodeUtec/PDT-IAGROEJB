@@ -14,6 +14,8 @@ public interface DepartamentoBeanRemote {
 	void actualizar(Departamento departamento) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Departamento getDepartamentoById(Long id);
 
 	List<Departamento> obtenerTodos();
 

@@ -90,4 +90,10 @@ public class ParametroBean implements ParametroBeanRemote {
 		return query.getResultList();
 	}
 
+	@Override
+	public Parametro getParametroById(Long id) {
+		Parametro p = em.find(Parametro.class, id);
+		return p;
+	}
+
 }

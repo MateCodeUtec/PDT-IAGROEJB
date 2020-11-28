@@ -1,12 +1,13 @@
 package models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Reporte implements Serializable {
+public class ActividadCampo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -22,8 +23,9 @@ public class Reporte implements Serializable {
 	@Column(length = 500)
 	private String descripcion;
 	
-	@OneToMany 
-	private List<Multimedia> multimedias;
+	@ManyToOne
+	private Formulario formulario;
+	
 
 	public Long getId() {
 		return id;
@@ -56,15 +58,15 @@ public class Reporte implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public List<Multimedia> getMultimedias() {
-		return multimedias;
-	}
-
-	public void setMultimedias(List<Multimedia> multimedias) {
-		this.multimedias = multimedias;
-	}
 	
+	public Formulario getFormulario() {
+		return formulario;
+	}
+
+	public void setFormulario(Formulario formulario) {
+		this.formulario = formulario;
+	}
+
 	@Override
 	public String toString() {
 		return nombre;
@@ -75,8 +77,8 @@ public class Reporte implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((formulario == null) ? 0 : formulario.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((multimedias == null) ? 0 : multimedias.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
@@ -90,21 +92,21 @@ public class Reporte implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Reporte other = (Reporte) obj;
+		ActividadCampo other = (ActividadCampo) obj;
 		if (descripcion == null) {
 			if (other.descripcion != null)
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
+		if (formulario == null) {
+			if (other.formulario != null)
+				return false;
+		} else if (!formulario.equals(other.formulario))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (multimedias == null) {
-			if (other.multimedias != null)
-				return false;
-		} else if (!multimedias.equals(other.multimedias))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)

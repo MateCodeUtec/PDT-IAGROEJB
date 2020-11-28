@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 
 import models.Multimedia;
-import models.Reporte;
+import models.ActividadCampo;
 
 /**
  * Session Bean implementation class MultimediaBean
@@ -100,7 +100,7 @@ public class MultimediaBean implements MultimediaBeanRemote {
 		try {
 			Multimedia multimedia = em.find(Multimedia.class, idMultimedia);
 
-			multimedia.setReporte(em.find(Reporte.class, idReporte));;
+			multimedia.setReporte(em.find(ActividadCampo.class, idReporte));;
 
 				em.flush();
 			

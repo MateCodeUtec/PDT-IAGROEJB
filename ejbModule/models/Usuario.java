@@ -21,6 +21,9 @@ public class Usuario implements Serializable{
 	@Column(length = 50, unique = true)
 	private String usuario;
 	
+	@Column(length = 100, unique = true)
+	private String mail;
+	
 	@Column(length = 50)
 	private String contrasenia;
 	
@@ -30,57 +33,71 @@ public class Usuario implements Serializable{
 	public Usuario() {
 		
 	}
-	
-	public Usuario(String nombre, String apellido, String usuario, String contrasenia, Rol rol) {
+
+	public Usuario(String nombre, String apellido, String usuario, String mail, String contrasenia, Rol rol) {
+		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.usuario = usuario;
+		this.mail = mail;
 		this.contrasenia = contrasenia;
 		this.rol = rol;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getApellido() {
 		return apellido;
 	}
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
 	public String getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
 	public String getContrasenia() {
 		return contrasenia;
 	}
+
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+
 	public Rol getRol() {
 		return rol;
 	}
+
 	public void setRol(Rol rol) {
 		this.rol = rol;
-	}
-	
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario
-				+ ", contrasenia=" + contrasenia + ", rol=" + rol + "]";
 	}
 
 	@Override
@@ -90,6 +107,7 @@ public class Usuario implements Serializable{
 		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
 		result = prime * result + ((contrasenia == null) ? 0 : contrasenia.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
@@ -120,6 +138,11 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (mail == null) {
+			if (other.mail != null)
+				return false;
+		} else if (!mail.equals(other.mail))
+			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
 				return false;
@@ -137,5 +160,12 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario
+				+ ", mail=" + mail + ", contrasenia=" + contrasenia + ", rol=" + rol + "]";
+	}
+	
 	
 }

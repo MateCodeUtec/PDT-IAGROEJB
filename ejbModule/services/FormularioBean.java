@@ -29,7 +29,6 @@ public class FormularioBean implements FormularioBeanRemote {
 			
 		} catch (PersistenceException e) {
 			e.printStackTrace();
-			System.out.println(e.getMessage());
 			throw new Exception("No se pudo crear el formulario");
 		}
 	}

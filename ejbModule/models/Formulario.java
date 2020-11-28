@@ -2,7 +2,11 @@ package models;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import enums.Visibilidad;
 
@@ -22,21 +26,6 @@ public class Formulario implements Serializable {
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 	
-	@ManyToOne(optional = true)
-	private Departamento departamento;
-	
-	@ManyToOne(optional = true)
-	private Estacion estacion;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Metodo> metodos;
-	
-	@ManyToOne(optional = true)
-	private Region region;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Equipamiento> equipamientos;
-	
 	@Column(length = 100)
 	private String titulo;
 	
@@ -46,15 +35,35 @@ public class Formulario implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private Visibilidad visibilidad;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Parametro> parametros;
-
+	@OneToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+	private Set<Parametro> parametros  = new HashSet<Parametro>();
+	
+	@Column(length = 1)
+	private String usaEquip = "N";
+	
+	@Column(length = 1)
+	private String usaMetodo = "N";
+	
+	@Column(length = 1)
+	private String usaRegion = "N";
+	
+	@Column(length = 1)
+	private String usaDepto = "N";
+	
+	@Column(length = 1)
+	private String usaLocalidad = "N";
+	
+	@Column(length = 1)
+	private String usaFecha = "N";
+	
+	@Column(length = 1)
+	private String usaEstacion = "N";
 	
 	public Formulario() {
 	}
 
 	public Formulario(Usuario usuario, String titulo, String descripcion, Visibilidad visibilidad,
-			List<Parametro> parametros) {
+			Set<Parametro> parametros) {
 		super();
 		this.usuario = usuario;
 		this.titulo = titulo;
@@ -71,24 +80,6 @@ public class Formulario implements Serializable {
 		this.descripcion = descripcion;
 		this.visibilidad = visibilidad;
 	}
-	
-	
-
-	public Formulario(Usuario usuario, Departamento departamento, Estacion estacion, List<Metodo> metodos, Region region,
-			List<Equipamiento> equipamientos, String titulo, String descripcion, Visibilidad visibilidad,
-			List<Parametro> parametros) {
-		super();
-		this.usuario = usuario;
-		this.departamento = departamento;
-		this.estacion = estacion;
-		this.metodos = metodos;
-		this.region = region;
-		this.equipamientos = equipamientos;
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.visibilidad = visibilidad;
-		this.parametros = parametros;
-	}
 
 	public Long getId() {
 		return id;
@@ -98,8 +89,6 @@ public class Formulario implements Serializable {
 		this.id = id;
 	}
 	
-	
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -132,138 +121,72 @@ public class Formulario implements Serializable {
 		this.titulo = titulo;
 	}
 	
-	public List<Parametro> getParametros() {
+	public Set<Parametro> getParametros() {
 		return parametros;
 	}
 
-	public void setParametros(List<Parametro> parametros) {
-		this.parametros = parametros;
+	public void setParametros(Set<Parametro> listaParametros) {
+		this.parametros = listaParametros;
 	}
 	
 	public void addParametro (Parametro parametro) {
 		parametros.add(parametro);
 	}
 
-	public Departamento getDepartamento() {
-		return departamento;
+	public String getUsaEquip() {
+		return usaEquip;
 	}
 
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
+	public void setUsaEquip(String usaEquip) {
+		this.usaEquip = usaEquip;
 	}
 
-	public Estacion getEstacion() {
-		return estacion;
+	public String getUsaMetodo() {
+		return usaMetodo;
 	}
 
-	public void setEstacion(Estacion estacion) {
-		this.estacion = estacion;
+	public void setUsaMetodo(String usaMetodo) {
+		this.usaMetodo = usaMetodo;
 	}
 
-	public Region getRegion() {
-		return region;
+	public String getUsaRegion() {
+		return usaRegion;
 	}
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-	
-	public List<Metodo> getMetodos() {
-		return metodos;
+	public void setUsaRegion(String usaRegion) {
+		this.usaRegion = usaRegion;
 	}
 
-	public void setMetodos(List<Metodo> metodos) {
-		this.metodos = metodos;
+	public String getUsaDepto() {
+		return usaDepto;
 	}
 
-	public List<Equipamiento> getEquipamientos() {
-		return equipamientos;
+	public void setUsaDepto(String usaDepto) {
+		this.usaDepto = usaDepto;
 	}
 
-	public void setEquipamientos(List<Equipamiento> equipamientos) {
-		this.equipamientos = equipamientos;
+	public String getUsaLocalidad() {
+		return usaLocalidad;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((departamento == null) ? 0 : departamento.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((equipamientos == null) ? 0 : equipamientos.hashCode());
-		result = prime * result + ((estacion == null) ? 0 : estacion.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((metodos == null) ? 0 : metodos.hashCode());
-		result = prime * result + ((parametros == null) ? 0 : parametros.hashCode());
-		result = prime * result + ((region == null) ? 0 : region.hashCode());
-		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
-		result = prime * result + ((visibilidad == null) ? 0 : visibilidad.hashCode());
-		return result;
+	public void setUsaLocalidad(String usaLocalidad) {
+		this.usaLocalidad = usaLocalidad;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Formulario other = (Formulario) obj;
-		if (departamento == null) {
-			if (other.departamento != null)
-				return false;
-		} else if (!departamento.equals(other.departamento))
-			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
-		if (equipamientos == null) {
-			if (other.equipamientos != null)
-				return false;
-		} else if (!equipamientos.equals(other.equipamientos))
-			return false;
-		if (estacion == null) {
-			if (other.estacion != null)
-				return false;
-		} else if (!estacion.equals(other.estacion))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (metodos == null) {
-			if (other.metodos != null)
-				return false;
-		} else if (!metodos.equals(other.metodos))
-			return false;
-		if (parametros == null) {
-			if (other.parametros != null)
-				return false;
-		} else if (!parametros.equals(other.parametros))
-			return false;
-		if (region == null) {
-			if (other.region != null)
-				return false;
-		} else if (!region.equals(other.region))
-			return false;
-		if (titulo == null) {
-			if (other.titulo != null)
-				return false;
-		} else if (!titulo.equals(other.titulo))
-			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
-			return false;
-		if (visibilidad != other.visibilidad)
-			return false;
-		return true;
+	public String getUsaFecha() {
+		return usaFecha;
+	}
+
+	public void setUsaFecha(String usaFecha) {
+		this.usaFecha = usaFecha;
+	}
+
+	public String getUsaEstacion() {
+		return usaEstacion;
+	}
+
+	public void setUsaEstacion(String usaEstacion) {
+		this.usaEstacion = usaEstacion;
 	}
 
 	@Override
@@ -271,7 +194,4 @@ public class Formulario implements Serializable {
 		return titulo;
 	}
 
-		
-	
-	
 }

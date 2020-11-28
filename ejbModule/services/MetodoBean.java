@@ -76,5 +76,12 @@ public class MetodoBean implements MetodoBeanRemote {
 
 		return query.getResultList();
 	}
+
+
+	@Override
+	public Metodo getMetodoById(Long id) {
+		Metodo metodo = em.find(Metodo.class, id);
+		return metodo;
+	}
 }
 

@@ -88,4 +88,12 @@ public class DepartamentoBean implements DepartamentoBeanRemote {
 
 	}
 
+	@Override
+	public Departamento getDepartamentoById(Long id) {
+
+		Departamento departamento = em.find(Departamento.class, id);
+		return departamento;
+	}
+
 }
+

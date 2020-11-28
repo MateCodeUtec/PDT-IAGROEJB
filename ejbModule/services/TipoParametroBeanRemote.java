@@ -14,6 +14,8 @@ public interface TipoParametroBeanRemote {
 	void actualizar(TipoParametro tipoParametro) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	TipoParametro getTipoParametro(Long id);
 
 	List<TipoParametro> obtenerTodos();
 

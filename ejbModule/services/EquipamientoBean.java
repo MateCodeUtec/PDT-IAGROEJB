@@ -79,4 +79,10 @@ public class EquipamientoBean implements EquipamientoBeanRemote {
 
 	}
 
+	@Override
+	public Equipamiento getEquipamientoById(Long id) {
+		Equipamiento equipamiento = em.find(Equipamiento.class, id);
+		return equipamiento;
+	}
+
 }

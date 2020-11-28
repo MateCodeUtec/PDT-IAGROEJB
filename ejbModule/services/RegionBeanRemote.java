@@ -15,6 +15,8 @@ public interface RegionBeanRemote {
 	void actualizar(Region region) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Region getRegionById(Long id);
 
 	List<Region> obtenerTodos();
 

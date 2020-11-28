@@ -14,6 +14,8 @@ public interface MetodoBeanRemote {
 	void actualizar(Metodo metodo) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Metodo getMetodoById(Long id);
 
 	List<Metodo> obtenerTodos();
 

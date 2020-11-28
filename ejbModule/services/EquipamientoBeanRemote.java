@@ -14,6 +14,8 @@ public interface EquipamientoBeanRemote {
 	void actualizar(Equipamiento equipamiento) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Equipamiento getEquipamientoById(Long id);
 
 	List<Equipamiento> obtenerTodos();
 

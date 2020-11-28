@@ -84,4 +84,10 @@ public class RegionBean implements RegionBeanRemote {
 
    	}
 
+	@Override
+	public Region getRegionById(Long id) {
+		Region region = em.find(Region.class, id);
+		return null;
+	}
+
 }

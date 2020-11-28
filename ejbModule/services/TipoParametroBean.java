@@ -81,5 +81,11 @@ public class TipoParametroBean implements TipoParametroBeanRemote {
 
 	}
 
+	@Override
+	public TipoParametro getTipoParametro(Long id) {
+		TipoParametro tipoParametro = em.find(TipoParametro.class, id);
+		return tipoParametro;
+	}
+
 
 }

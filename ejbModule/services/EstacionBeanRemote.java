@@ -15,6 +15,8 @@ public interface EstacionBeanRemote {
 	void actualizar(Estacion estacion) throws Exception;
 
 	void borrar(Long id) throws Exception;
+	
+	Estacion getEstacionById(Long id);
 
 	List<Estacion> obtenerTodos();
 
