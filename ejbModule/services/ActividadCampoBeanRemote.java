@@ -15,7 +15,10 @@ public interface ActividadCampoBeanRemote {
 
 	void borrar(Long id) throws Exception;
 	
+	void desactivar(Long id);
+	
 	ActividadCampo getActividadById(Long id);
+	
 
 	List<ActividadCampo> obtenerTodos();
 

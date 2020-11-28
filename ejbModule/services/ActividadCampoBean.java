@@ -63,7 +63,7 @@ public class ActividadCampoBean implements ActividadCampoBeanRemote {
 	@Override
 	public List<ActividadCampo> obtenerTodos() {
 
-		TypedQuery<ActividadCampo> query = em.createQuery("SELECT e FROM ActividadCampo e", ActividadCampo.class);
+		TypedQuery<ActividadCampo> query = em.createQuery("SELECT e FROM ActividadCampo e WHERE activoSN = 'S' ", ActividadCampo.class);
 
 		return query.getResultList();
 	}
@@ -83,6 +83,15 @@ public class ActividadCampoBean implements ActividadCampoBeanRemote {
 	public ActividadCampo getActividadById(Long id) {
 		ActividadCampo actividadCampo = em.find(ActividadCampo.class, id);
 		return actividadCampo;
+	}
+
+	@Override
+	public void desactivar(Long id) {
+		ActividadCampo actividadCampo = em.find(ActividadCampo.class, id);
+		actividadCampo.setActivoSN("N");
+		em.merge(actividadCampo);
+		em.flush();
+		
 	}
 
 }

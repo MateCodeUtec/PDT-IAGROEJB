@@ -59,6 +59,10 @@ public class Formulario implements Serializable {
 	@Column(length = 1)
 	private String usaEstacion = "N";
 	
+	@Column(length = 1)
+	private String activoSN = "S";
+	
+	
 	public Formulario() {
 	}
 
@@ -187,6 +191,15 @@ public class Formulario implements Serializable {
 
 	public void setUsaEstacion(String usaEstacion) {
 		this.usaEstacion = usaEstacion;
+	}
+	
+
+	public String getActivoSN() {
+		return activoSN;
+	}
+
+	public void setActivoSN(String activoSN) {
+		this.activoSN = activoSN;
 	}
 
 	@Override

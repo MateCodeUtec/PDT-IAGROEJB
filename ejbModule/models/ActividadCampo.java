@@ -1,7 +1,7 @@
 package models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -23,10 +23,14 @@ public class ActividadCampo implements Serializable {
 	@Column(length = 500)
 	private String descripcion;
 	
+	private Date fechaInicio;
+	
+	@Column(length = 1)
+	private String activoSN = "S";
+	
 	@ManyToOne
 	private Formulario formulario;
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -65,6 +69,23 @@ public class ActividadCampo implements Serializable {
 
 	public void setFormulario(Formulario formulario) {
 		this.formulario = formulario;
+	}
+
+	public String getActivoSN() {
+		return activoSN;
+	}
+
+	public void setActivoSN(String activoSN) {
+		this.activoSN = activoSN;
+	}
+	
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date date) {
+		this.fechaInicio = date;
 	}
 
 	@Override

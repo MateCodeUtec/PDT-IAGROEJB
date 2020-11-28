@@ -64,7 +64,7 @@ public class FormularioBean implements FormularioBeanRemote {
 	@Override
 	public List<Formulario> obtenerTodos() {
 
-		TypedQuery<Formulario> query = em.createQuery("SELECT u FROM Formulario u", Formulario.class);
+		TypedQuery<Formulario> query = em.createQuery("SELECT u FROM Formulario u WHERE activoSN = 'S' ", Formulario.class);
 
 		return query.getResultList();
 	}
@@ -93,5 +93,15 @@ public class FormularioBean implements FormularioBeanRemote {
 		Formulario formulario = em.find(Formulario.class, id);
 		
 		return formulario;
+	}
+
+	@Override
+	public void desactivar(Long id) throws Exception {
+		
+		Formulario formulario = em.find(Formulario.class, id);
+		formulario.setActivoSN("N");
+		em.merge(formulario);
+		em.flush();
+		
 	}
 }
