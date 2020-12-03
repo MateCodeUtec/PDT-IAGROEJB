@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -19,9 +20,10 @@ public interface ActividadCampoBeanRemote {
 	
 	ActividadCampo getActividadById(Long id);
 	
-
 	List<ActividadCampo> obtenerTodos();
 
 	List<ActividadCampo> obtenerTodos(String filtro);
+	
+	List<ActividadCampo> obtenerTodosRangoDeFechas(Date fechaInicio, Date fechaFin);
 
 }

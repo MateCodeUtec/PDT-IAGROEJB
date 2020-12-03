@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -91,6 +92,18 @@ public class ActividadCampoBean implements ActividadCampoBeanRemote {
 		actividadCampo.setActivoSN("N");
 		em.merge(actividadCampo);
 		em.flush();
+		
+	}
+
+	@Override
+	public List<ActividadCampo> obtenerTodosRangoDeFechas(Date fechaInicio, Date fechaFin) {
+		
+		TypedQuery<ActividadCampo> query = em
+				.createQuery("SELECT e FROM ActividadCampo e WHERE e.fechaInicio between :fechaInicio and :fechaFin", ActividadCampo.class)
+				.setParameter("fechaInicio", fechaInicio)
+				.setParameter("fechaFin", fechaFin);
+
+		return query.getResultList();
 		
 	}
 
